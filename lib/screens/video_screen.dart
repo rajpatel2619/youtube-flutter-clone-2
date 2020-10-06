@@ -3,7 +3,8 @@ import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class VideoScreen extends StatefulWidget {
   final String id;
-  VideoScreen({this.id});
+  final String title;
+  VideoScreen({this.id,this.title});
   @override
   _VideoScreenState createState() => _VideoScreenState();
 }
@@ -23,8 +24,13 @@ class _VideoScreenState extends State<VideoScreen> {
 
   @override
   Widget build(BuildContext context) {
+    var isPortrait = MediaQuery.of(context).orientation == Orientation.portrait;
+    Widget myAppbar = isPortrait ? AppBar(
+      title: Text(widget.title),
+    ):null ;
     return Scaffold(
-      appBar: AppBar(),
+      
+      appBar: myAppbar,
       body: YoutubePlayer(
         controller: _controller,
         showVideoProgressIndicator: true,

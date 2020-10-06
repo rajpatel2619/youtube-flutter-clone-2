@@ -22,7 +22,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   _initChannel() async {
     Channel channel = await APIServices.instance
-        .fetchChannel(channelId: 'UCGu3oftYZmB-DKGlbR8Yrpw');
+        .fetchChannel(channelId: 'UCi7EAw25YhcctENMqmiB-iw');
     setState(() {
       _channel = channel;
     });
@@ -30,8 +30,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
   _buildProfileInfo() {
     return Container(
-      margin: EdgeInsets.all(20),
-      padding: EdgeInsets.all(20),
+      margin: EdgeInsets.all(15),
+      padding: EdgeInsets.all(15),
       height: 100,
       decoration: BoxDecoration(color: Colors.white, boxShadow: [
         BoxShadow(
@@ -65,7 +65,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 overflow: TextOverflow.ellipsis,
               ),
               Text(
-                '${_channel.subscriberCount} suscribers',
+                '${_channel.videoCount} videos',
                 style: TextStyle(
                   color: Colors.grey[600],
                   fontSize: 20,
@@ -87,6 +87,7 @@ class _HomeScreenState extends State<HomeScreen> {
           MaterialPageRoute(
               builder: (_) => VideoScreen(
                     id: video.id,
+                    title: video.title,
                   ))),
       child: Container(
         margin: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
@@ -102,7 +103,7 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Row(
           children: [
             Image(
-              width: 150,
+              width: 130,
               image: NetworkImage(video.thumbnailUrl),
             ),
             SizedBox(
@@ -113,7 +114,7 @@ class _HomeScreenState extends State<HomeScreen> {
               video.title,
               style: TextStyle(
                 color: Colors.black,
-                fontSize: 18,
+                fontSize: 15,
               ),
             ))
           ],
@@ -138,7 +139,9 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Youtube clone 2'),
+        leading: Icon(Icons.audiotrack),
+        title: Text('Prashant Creation'),
+        centerTitle: true,
       ),
       body: _channel != null
           ? NotificationListener<ScrollNotification>(
